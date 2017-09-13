@@ -2,10 +2,12 @@ html{
   font-family: sans-serif;
   width:100%;
   height:100%;
-  background:#333;
-  font-size: .5em;
+  background:#636363;
 }
 
+#root{
+    background:#636363;
+}
 .grid{
     margin: 4em auto;
     background:linear-gradient(#f7aeb7, #ffcccc, #ffeee6);
@@ -16,10 +18,10 @@ table{
 }
 
 td{
-  table-layout:fixed;
-  min-width: 3em;
-  width: 3em;
-  height: 3em;
+  marign: .5em !important;
+  min-width: 2em;
+  width: 2em;
+  height: 2em;
   text-align: center;
 }
 
@@ -32,9 +34,59 @@ td{
 }
 
 .wall{
-  background:#333;
+  background:#636363;
 }
 
 .tunnel{
     background:transparent;
+}
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+  td{
+    min-width: 2em;
+    width: 2em;
+    height: 2em;
+    font-size: .4em;
+  }
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+  td{
+    min-width: 2em;
+    width: 2em;
+    height: 2em;
+    font-size: 1em;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  td{
+    min-width: 2em;
+    width: 2em;
+    height: 2em;
+    font-size: 1em;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  td{
+    min-width: 2em;
+    width: 2em;
+    height: 2em;
+    font-size: 1em;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  td{
+    min-width: 2em;
+    width: 2em;
+    height: 2em;
+    font-size: 1em;
+  }
 }
