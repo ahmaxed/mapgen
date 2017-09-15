@@ -2,7 +2,7 @@
 
 
 html{
-  font-family: sans-serif;
+  font-family: georgia,serif;
   width:100%;
   height:100%;
   background:#636363;
@@ -11,8 +11,17 @@ html{
 #root{
     background:#636363;
 }
+.container{
+  margin:1em;
+}
+
+label{
+  font-family:"Arial Black";
+  font-size: 1.2em;
+  color:#333;
+}
 .grid{
-    margin: 4em auto;
+    margin: 1em auto;
     background:linear-gradient(#f7aeb7, #ffcccc, #ffeee6);
 }
 
@@ -46,7 +55,7 @@ td{
     background:transparent;
 }
 /* Custom, iPhone Retina */
-@media only screen and (min-width : 320px) {
+@media only screen and (min-width : 120px) {
   td{
     min-width: 2em;
     width: 2em;
