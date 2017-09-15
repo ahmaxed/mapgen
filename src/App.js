@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-var grid;
 class App extends Component {
   constructor(props) {
     super(props);
@@ -58,15 +57,15 @@ class App extends Component {
     return fulArr;// finally retun the array to be drawn
   };
   render() {
-    grid = this.nextMove();
+    const grid = this.nextMove();
     return (
-  <table className="grid">
-  <thead>
-    {grid.map((obj, row) =>
-        <tr key={row}>{obj.map((obj2, col) =><td className={obj2 === 1 ? 'wall' : 'tunnel'} key={col}></td>)}</tr>
-    )}
-    </thead>
-  </table>
+    <table className="grid">
+    <thead>
+      {grid.map((obj, row) =>
+          <tr key={row}>{obj.map((obj2, col) =><td className={obj2 === 1 ? 'wall' : 'tunnel'} key={col}></td>)}</tr>
+      )}
+      </thead>
+    </table>
     );
   }
 }

@@ -1,3 +1,6 @@
+
+
+
 html{
   font-family: sans-serif;
   width:100%;
@@ -15,10 +18,12 @@ html{
 
 table{
   border-collapse:collapse;
+  border-spacing: -1 !important;
 }
 
 td{
-  marign: .5em !important;
+  margin:0;
+  padding:0px;
   min-width: 2em;
   width: 2em;
   height: 2em;
