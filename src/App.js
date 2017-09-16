@@ -79,13 +79,17 @@ onSubmit(e){
     return (
       <div className="container">
         <div className="form-group row">
+        	<div className="col-xs-push-3 col-sm-push-4 col-md-push-5 col-lg-push-5 col-xs-3 col-sm-2 col-md-1 col-lg-1">
+            <label>dimensions</label>
+            <input className="form-control" name="dimentions" type="text" maxLength="2" value={this.state.dimentions} onChange={this.onChange}/>
+          </div>
           <div className="col-xs-push-3 col-sm-push-4 col-md-push-5 col-lg-push-5 col-xs-3 col-sm-2 col-md-1 col-lg-1">
             <label>maxTurn</label>
-            <input className="form-control" name="maxTurn" type="text" value={this.state.maxTurn} onChange={this.onChange}/>
+            <input className="form-control" name="maxTurn" type="text" maxLength="3" value={this.state.maxTurn} onChange={this.onChange}/>
           </div>
           <div className="col-xs-push-3 col-sm-push-4 col-md-push-5 col-lg-push-5 col-xs-3 col-sm-2 col-md-1 col-lg-1">
             <label>maxLeng</label>
-            <input className="form-control" name="maxLeng" type="text" value={this.state.maxLeng} onChange={this.onChange}/>
+            <input className="form-control" name="maxLeng" type="text" maxLength="3" value={this.state.maxLeng} onChange={this.onChange}/>
           </div>
         </div>
         <table className="grid" onClick={this.onClick}>

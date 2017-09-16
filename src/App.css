@@ -54,6 +54,11 @@ td{
 .tunnel{
     background:transparent;
 }
+
+.form-control {
+	width: 60px; 
+}
+
 /* Custom, iPhone Retina */
 @media only screen and (min-width : 120px) {
   td{
