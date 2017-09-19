@@ -58,20 +58,27 @@ class App extends Component {
 
         //break the loop if it is going out of the map
         if(((curRow === 0) && (randTurn[0] === -1)) ||
-	     	  ((curCol === 0) && (randTurn[1] === -1)) ||
-	        ((curRow === dimentions - 1) && (randTurn[0] === 1)) ||
-	        ((curCol === dimentions - 1) && (randTurn[1] === 1))){
-	          break;
+	     	 ((curCol === 0) && (randTurn[1] === -1)) ||
+	       ((curRow === dimentions - 1) && (randTurn[0] === 1)) ||
+	       ((curCol === dimentions - 1) && (randTurn[1] === 1))){
+            if(i > 0) { //update variables if it breaks after we have moved one or more spaces
+              lastTurn = randTurn;//set last turn to the value of the current turn
+              maxTurn--;// decrement the number of turns allowed       
+            }   	
+            debugger;
+            break;
 	     }else{
 	       //set the value of the item to 0
 	       fulArr[curRow][curCol] = 0;
 	       //otherwise incriment the row and col according to the turn
 	       curRow = curRow + randTurn[0];
 	       curCol = curCol + randTurn[1];
-	     }
-	     lastTurn = randTurn;//set last turn to the value of the current turn
+	     }  
+	     if(i === randLeng-1) { //update variables if we get to the end of the loop without breaking
+	       lastTurn = randTurn;//set last turn to the value of the current turn
+	       maxTurn--;// decrement the number of turns allowed
+        }  
 	   }
-      maxTurn--;// decrement the number of turns allowed
     }
     return fulArr;// finally return the array to be drawn
   };
