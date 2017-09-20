@@ -1,78 +1,80 @@
-
-
-
-html{
-  font-family: georgia,serif;
-  width:100%;
-  height:100%;
-  background:#636363;
+html {
+  font-family: georgia, serif;
+  width: 100%;
+  height: 100%;
+  background: #636363;
 }
 
-#root{
-    background:#636363;
-}
-.container{
-  margin:1em;
+#root {
+  background: #636363;
 }
 
-label{
-  font-family:"Arial Black";
+.container {
+  margin: 1em;
+}
+
+label {
+  font-family: "Arial Black";
   font-size: 1.2em;
-  color:#333;
-}
-.grid{
-    margin: 1em auto;
-    background:linear-gradient(#f7aeb7, #ffcccc, #ffeee6);
+  color: #333;
 }
 
-table{
-  border-collapse:collapse;
+.grid {
+  margin: 1em auto;
+  background: linear-gradient(#f7aeb7, #ffcccc, #ffeee6);
+}
+
+table {
+  border-collapse: collapse;
   border-spacing: -1 !important;
 }
 
-td{
-  margin:0;
-  padding:0px;
+td {
+  margin: 0;
+  padding: 0px;
   min-width: 2em;
   width: 2em;
   height: 2em;
   text-align: center;
 }
 
-.wall:before{
-    content: "1";
+.wall:before {
+  content: "1";
 }
 
-.tunnel:before{
-    content: "0";
+.tunnel:before {
+  content: "0";
 }
 
-.wall{
-  background:#636363;
+.wall {
+  background: #636363;
 }
 
-.tunnel{
-    background:transparent;
+.tunnel {
+  background: transparent;
 }
 
 .form-control {
-	width: 60px; 
+  width: 60px;
 }
 
+
 /* Custom, iPhone Retina */
-@media only screen and (min-width : 120px) {
-  td{
+
+@media only screen and (min-width: 120px) {
+  td {
     min-width: 2em;
     width: 2em;
     height: 2em;
     font-size: .4em;
   }
-
 }
 
+
 /* Extra Small Devices, Phones */
-@media only screen and (min-width : 480px) {
-  td{
+
+@media only screen and (min-width: 480px) {
+  td {
     min-width: 2em;
     width: 2em;
     height: 2em;
@@ -80,19 +82,23 @@ td{
   }
 }
 
+
 /* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
-  td{
+
+@media only screen and (min-width: 768px) {
+  td {
     min-width: 2em;
     width: 2em;
     height: 2em;
     font-size: 1em;
   }
 }
+
 
 /* Medium Devices, Desktops */
-@media only screen and (min-width : 992px) {
-  td{
+
+@media only screen and (min-width: 992px) {
+  td {
     min-width: 2em;
     width: 2em;
     height: 2em;
@@ -100,9 +106,11 @@ td{
   }
 }
 
+
 /* Large Devices, Wide Screens */
-@media only screen and (min-width : 1200px) {
-  td{
+
+@media only screen and (min-width: 1200px) {
+  td {
     min-width: 2em;
     width: 2em;
     height: 2em;
