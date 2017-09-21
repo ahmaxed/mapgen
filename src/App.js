@@ -37,6 +37,7 @@ class App extends Component {
     }
     return input;
   }
+  
   //lets create a randomly generated map for our dungeon crawler
   createMap() {
     let dimensions = this.state.dimensions, // width and height of the map
@@ -96,16 +97,16 @@ class App extends Component {
     let grid = this.createMap();
     return (
       <div className="container">
-        <div className="form-group row">
-          <div className="col-xs-push-3 col-sm-push-4 col-md-push-5 col-lg-push-5 col-xs-3 col-sm-2 col-md-1 col-lg-1">
+        <div className="form-group row text-center">
+          <div className="inline">
             <label>dimensions</label>
             <input className="form-control" name="dimensions" type="text" maxLength="2" value={this.state.dimensions} onChange={this.onChange}/>
           </div>
-          <div className="col-xs-push-3 col-sm-push-4 col-md-push-5 col-lg-push-5 col-xs-3 col-sm-2 col-md-1 col-lg-1">
+          <div className="inline">
             <label>maxTunnels</label>
             <input className="form-control" name="maxTunnels" type="text" maxLength="3" value={this.state.maxTunnels} onChange={this.onChange}/>
           </div>
-          <div className="col-xs-push-3 col-sm-push-4 col-md-push-5 col-lg-push-5 col-xs-3 col-sm-2 col-md-1 col-lg-1">
+          <div className="inline">
             <label>maxLength</label>
             <input className="form-control" name="maxLength" type="text" maxLength="3" value={this.state.maxLength} onChange={this.onChange}/>
           </div>
