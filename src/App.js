@@ -26,10 +26,17 @@ class App extends Component {
 
   onChange(e) {
     this.setState({
-      [e.target.name]: Number(e.target.value)
+      [e.target.name]: this.validator(e.target.value)
     });
   }
 
+  validator(x) {
+    let input = Number(x);
+    if (isNaN(input)){
+      return 0;
+    }
+    return input;
+  }
   //lets create a randomly generated map for our dungeon crawler
   createMap() {
     let dimensions = this.state.dimensions, // width and height of the map
@@ -42,17 +49,17 @@ class App extends Component {
       lastDirection = [], // save the last direction we went
       randomDirection; // next turn/direction - holds a value from directions
 
-    // lets create some tunnels - while maxTunnels is greater than 0...
-    while (maxTunnels) { 
+    // lets create some tunnels - while maxTunnels, dimentions, and maxLength  is greater than 0.
+    while (maxTunnels && dimensions && maxLength) {
 
       // lets get a random direction - until it is a perpendicular to our lastDirection
       // if the last direction = left or right,
-      // then our new direction has to be up or down, 
+      // then our new direction has to be up or down,
       // and vice versa
-      do { 
+      do {
          randomDirection = directions[Math.floor(Math.random() * directions.length)];
       } while ((randomDirection[0] === -lastDirection[0] && randomDirection[1] === -lastDirection[1]) || (randomDirection[0] === lastDirection[0] && randomDirection[1] === lastDirection[1]));
-		
+
       var randomLength = Math.ceil(Math.random() * maxLength), //length the next tunnel will be (max of maxLength)
         tunnelLength = 0; //current length of tunnel being created
 
@@ -64,7 +71,7 @@ class App extends Component {
             ((currentColumn === 0) && (randomDirection[1] === -1)) ||
             ((currentRow === dimensions - 1) && (randomDirection[0] === 1)) ||
             ((currentColumn === dimensions - 1) && (randomDirection[1] === 1))) {
-          break;       
+          break;
         } else {
           map[currentRow][currentColumn] = 0; //set the value of the index in map to 0 (a tunnel, making it one longer)
           currentRow += randomDirection[0]; //add the value from randomDirection to row and col (-1, 0, or 1) to update our location
