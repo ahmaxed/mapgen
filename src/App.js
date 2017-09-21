@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import './App.css';
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dimensions: 5,
-      maxTunnels: 2,
-      maxLength: 3,
-      grid: []
+      dimensions: 30,
+      maxTunnels: 100,
+      maxLength: 8
     };
     this.onClick = this.onClick.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
-  fullArray(num, dimensions) {
+  createArray(num, dimensions) {
     var array = [];
     for (var i = 0; i < dimensions; i++) {
       array.push([]);
@@ -30,65 +30,63 @@ class App extends Component {
     });
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-  }
+  //lets create a randomly generated map for our dungeon crawler
+  createMap() {
+    let dimensions = this.state.dimensions, // width and height of the map
+      maxTunnels = this.state.maxTunnels, // max number of tunnels possible
+      maxLength = this.state.maxLength, // max length each tunnel can have
+      map = this.createArray(1, dimensions), // create a 2d array full of 1's
+      currentRow = Math.floor(Math.random() * dimensions), // our current row - start at a random spot
+      currentColumn = Math.floor(Math.random() * dimensions), // our current column - start at a random spot
+      directions = [[-1, 0], [1, 0], [0, -1], [0, 1]], // array to get a random direction from (left,right,up,down)
+      lastDirection = [], // save the last direction we went
+      randomDirection; // next turn/direction - holds a value from directions
 
-  nextMove() {
-    let dimensions = this.state.dimensions,
-      maxTunnels = this.state.maxTunnels, // the number of turns the tunnel has
-      maxLength = this.state.maxLength, // maximum number of each turn can have
-      fulArr = this.fullArray(1, dimensions), // save a full array;
-      currentRow = Math.floor(Math.random() * dimensions), // pick a random row
-      currentColumn = Math.floor(Math.random() * dimensions), // pick a random column
-      directions = [[-1, 0], [1, 0], [0, -1], [0, 1]], // turns allowed are horizontal right/left and vertical right/left //left,right,up,down
-      lastTurn = [3, 3], // a variable to save the last turn it could have any non -1,0,1 value
-      randTurn, // initiate variable for the turn
-      randLength,
-      tunneLength;
-      //debugger;
-    while (maxTunnels) { // while number of allowed turns are not 0 do the following
+    // lets create some tunnels - while maxTunnels is greater than 0...
+    while (maxTunnels) { 
 
-      do { // do the following and check to see if passes the condition
-        randTurn = directions[Math.floor(Math.random() * directions.length)]; //randomly choose a turn
-        //if the player is at the edge of the map and the random turn wants to push it off map select another turn
-        //if the turn is similar to the previously selected turn or is reverse of the previous turn select another turn
-      } while (((randTurn[0] === -1 * lastTurn[0]) && (randTurn[1] === -1 * lastTurn[1])) || ((randTurn[0] === lastTurn[0]) && (randTurn[1] === lastTurn[1])));
+      // lets get a random direction - until it is a perpendicular to our lastDirection
+      // if the last direction = left or right,
+      // then our new direction has to be up or down, 
+      // and vice versa
+      do { 
+         randomDirection = directions[Math.floor(Math.random() * directions.length)];
+      } while ((randomDirection[0] === -lastDirection[0] && randomDirection[1] === -lastDirection[1]) || (randomDirection[0] === lastDirection[0] && randomDirection[1] === lastDirection[1]));
+		
+      var randomLength = Math.ceil(Math.random() * maxLength), //length the next tunnel will be (max of maxLength)
+        tunnelLength = 0; //current length of tunnel being created
 
-      randLength = Math.ceil(Math.random() * maxLength); //randomly choose a length form the maximum allowed length
-      tunneLength = 0;
-
-      while (tunneLength < randLength) { //loop over the length
+		// lets loop until our tunnel is long enough or until we hit an edge
+      while (tunnelLength < randomLength) {
 
         //break the loop if it is going out of the map
-        if (((currentRow === 0) && (randTurn[0] === -1)) ||
-            ((currentColumn === 0) && (randTurn[1] === -1)) ||
-            ((currentRow === dimensions - 1) && (randTurn[0] === 1)) ||
-            ((currentColumn === dimensions - 1) && (randTurn[1] === 1))) {
-          break;
+        if (((currentRow === 0) && (randomDirection[0] === -1)) ||
+            ((currentColumn === 0) && (randomDirection[1] === -1)) ||
+            ((currentRow === dimensions - 1) && (randomDirection[0] === 1)) ||
+            ((currentColumn === dimensions - 1) && (randomDirection[1] === 1))) {
+          break;       
         } else {
-          fulArr[currentRow][currentColumn] = 0; //set the value of the item to 0
-          currentRow = currentRow + randTurn[0]; //otherwise incriment the row and col according to the turn
-          currentColumn = currentColumn + randTurn[1];
-          tunneLength++;
+          map[currentRow][currentColumn] = 0; //set the value of the index in map to 0 (a tunnel, making it one longer)
+          currentRow += randomDirection[0]; //add the value from randomDirection to row and col (-1, 0, or 1) to update our location
+          currentColumn += randomDirection[1];
+          tunnelLength++; //the tunnel is now one longer, so lets increment that variable
         }
       }
 
-      if (tunneLength) {
-        lastTurn = randTurn; //set last turn to the value of the current turn
-        maxTunnels--; // decrement the number of turns allowed
+      if (tunnelLength) { // update our variables unless our last loop broke before we made any part of a tunnel
+        lastDirection = randomDirection; //set lastDirection, so we can remember what way we went
+        maxTunnels--; // we created a whole tunnel so lets decrement how many we have left to create
       }
     }
-    return fulArr; // finally return the array to be drawn
+    return map; // all our tunnels have been created and our map is complete, so lets return it to our render()
   };
 
   onClick(e) {
-    console.log("clicked");
     this.forceUpdate()
   }
 
   render() {
-    let grid = this.nextMove();
+    let grid = this.createMap();
     return (
       <div className="container">
         <div className="form-group row">
