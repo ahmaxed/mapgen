@@ -37,7 +37,7 @@ class App extends Component {
     }
     return input;
   }
-  
+
   //lets create a randomly generated map for our dungeon crawler
   createMap() {
     let dimensions = this.state.dimensions, // width and height of the map
@@ -96,7 +96,7 @@ class App extends Component {
   render() {
     let grid = this.createMap();
     return (
-      <div className="container">
+      <div >
         <div className="form-group row text-center">
           <div className="inline">
             <label>dimensions</label>
