@@ -13,8 +13,15 @@ html {
   margin: 1em;
 }
 
+.inline {
+  text-align: center;
+  padding: 15px;
+  display: inline-block;
+}
+
 label {
   font-family: "Arial Black";
+  font-variant: small-caps;
   font-size: 1.2em;
   color: #333;
 }
@@ -56,6 +63,7 @@ td {
 
 .form-control {
   width: 60px;
+  text-align: center;
 }
 
 
