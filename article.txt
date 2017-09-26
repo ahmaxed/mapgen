@@ -1,12 +1,12 @@
 How to make a procedural dungeon map generator using the Random Walk Algorithm
 
-As the technology evolves and game contents become more algorithmically generated,
+As the technology evolves and game content become more algorithmically generated,
 thinking of a time where people could play in a life like simulation that allows for
 unique experiences for each player would not be difficult to imagine.
 
-Although major technological break-thoughts,  decades of patience, and a large set
+Although major technological break-throughs, decades of patience, and a large set
 of skills are needed to get us there, understanding the basics of procedural content
-generation a step in the right direction. 
+generation is a step in the right direction.
 
 Even though there are multiple out of the box solutions to map generation, in this
  tutorial you will learn how to make your own two dimensional dungeon map generator
@@ -14,7 +14,7 @@ Even though there are multiple out of the box solutions to map generation, in th
 
 There are a variety of two dimensional map types but all of them have the following
  characteristics:
-1. accessible and inaccessible areas ( tunnels and walls).
+1. accessible and inaccessible areas (tunnels and walls).
 2. a connected route in which the player can navigate.
 
 The algorithm specified in this  tutorial is a variation of the Random Walk algorithm
@@ -24,31 +24,31 @@ After making a grid-like map of walls, this algorithm starts from a random place
 on the map and keeps making tunnels and taking random turns until it reaches its
 desired number of tunnels.
 
-Try out the following demo by tapping on the map and by changing the following values: 
-Dimension: the height and width of the map
+Try out the demo by opening the embedded codepen project below and changing the following values: 
+Dimension: the width and height of the map
 maxTunnels : the maximum number of turns the algorithm is allowed to take while making
 the map 
-maxLength : maximum length of each tunnel from which the algorithm will randomly choose
+maxLength : the maximum length of each tunnel from which the algorithm will randomly choose
  before taking a random horizontal or vertical turn
 
 
 
 
-Note: the larger the maxTurn is comparing to the dimentions, the more dense the map
- will be, and the larger the maxLength is to the dimentions, more tunnelly it look. 
+Note: the larger the maxTurn is compared to the dimensions, the more dense the map
+ will be, and the larger the maxLength is to the dimensions, the more tunnelly it will look. 
 Next, let us go through the map generation algorithm to see how it works step by step:
 makes a two dimensional map of walls. 
 chooses a random starting point on the map
 while the number of tunnels is not zero 
 chooses a random length from maximum allowed length
-chooses a random direction to turn to ( right, left, up , down)
+chooses a random direction to turn to (right, left, up, down)
 draws a tunnel in that direction while avoiding the edges of the map
 decrements the number of tunnels and repeat the while loop.
 returns the map with the changes
 
 This while loop continues until the number of tunnels is 0.
 The algorithm in code
-Since the map consists of tunnel and wall cell, the map could easily be described
+Since the map consists of tunnel and wall cells, the map could easily be described
 as zeros and ones in a two dimensional array such as the following.
 map = [[1,1,1,1,0],
        [1,0,0,0,0],
@@ -71,7 +71,7 @@ createArray(num, dimensions) {
     return array;
 }
 To implement the Random Walk Algorithm start by setting the dimensions of the map
-( width and height ), maxTunnels (maximum number of tunnels in the map) and maxLength (
+(width and height ), maxTunnels (maximum number of tunnels in the map) and maxLength (
 maximum length of each tunnel) variables.
 
 createMap(){
@@ -89,7 +89,7 @@ let currentRow = Math.floor(Math.random() * dimensions),
 
 To avoid the complexity of diagonal turns, the algorithm needs to specify the horizontal
 and vertical directions. Since every cell sits in a two dimensional array and could
-be identified with its row and column, the directions  could be defined as subtractions
+be identified with its row and column, the directions could be defined as subtractions
 from and/or additions to the column and row numbers. 
 
 For example, to choose a cells around the the cell [2][2]on the map, you could perform
@@ -100,7 +100,7 @@ to go right you add to its column[2][3]
 to go left you subtract one from its column[2][1]
 
 The following graph illustrates the above mentioned operations.
-///llustration up right left in map
+///illustration up right left in map
 ///illustration up right left 
 Now, set the directions variable to the following values which Random Walk will
 randomly choose from before creating each tunnel.
@@ -109,7 +109,7 @@ And finally initiate randomDirection variable to hold a random value from the di
 array, and set the lastDirection variable to an empty array which will hold the
 older randomDirection value.
 Note: the lastDirection array is empty on the first loop because there is not older
-randomDircetion.
+randomDirection.
 
 let lastDirection = [],
     randomDirection;
@@ -135,9 +135,9 @@ lastDirection’s first item, and the second one checks if the randomDirection�
 second item is the reverse of the lastTurn’s second item. 
 To illustrate, if the lastDirection is [0,1] and randomDirection is [0,-1], the
 first part of the condition checks if ramdomDirection[0] === - lastDirection[0]),
-which equates to 0 === - 0, and is true. Then, checks if (randDirection[1] === - lastDirection[1])
+which equates to 0 === - 0, and is true. Then, checks if (randomDirection[1] === - lastDirection[1])
 which equates to (-1 === -1) and is also true. Therefore, since both of the conditions
-are true, the algorithm goes back to find another randTurn.
+are true, the algorithm goes back to find another randomDirection.
 The second part of the condition is straight forward where it checks if the first
 and second values of the both arrays are the same.
 After you choose a randomDirction that satisfies the conditions, set a variable to
@@ -159,7 +159,7 @@ while (tunnelLength < randomLength) {
 
 Else set the current cell of the map to 0 using currentRow and currentColumn, set
 currentRow and currentColumn to where they need to be in the upcoming iteration
-of the loop by adding the values in the randomDirection array, and increment the
+of the loop by adding the values in the randomDirection array, and incrementing the
  tunnelLength iterator.
 
  else{
@@ -170,7 +170,7 @@ of the loop by adding the values in the randomDirection array, and increment the
  }
 }
 
-When the loop completely make a tunnel or when it breaks when  hitting the edges
+After the loop completely made a tunnel or after it breaks by hitting an edge
 of the map, check if the tunnel is at least one block long, if so, set the lastDirection
 to the randomDirection and decrement maxTunnels and go back to make another tunnel
  with another randomDirection.
@@ -194,6 +194,6 @@ see the algorithm all in one piece in the following snippet.
 
 
 
-Congratulations for reading through all this tutorial. Now you are well equipped to make your own map generator or improve upon this version. Here is the project on codepen and on github as a react application. 
+Congratulations for reading through this tutorial. You are now well equipped to make your own map generator or improve upon this version. Here is the project on codepen and on github as a react application. 
 Don’t forget to share your projects in the comment section. If you liked this project, please consider clapping for it, or following me for similar tutorials.
-Special thanks to Tom for co-writing this article.
+Special thanks to Tom(@moT01 on gitter) for co-writing this article.
